@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scan QR Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Membuka Scanner QR...</title>
 
   <style>
     * {
@@ -19,70 +19,57 @@
       justify-content: center;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #fff;
+      text-align: center;
     }
 
     .container {
-      text-align: center;
-      padding: 30px;
-      max-width: 400px;
-      width: 100%;
+      padding: 20px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+      animation: pulse 1.5s infinite;
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
 
     p {
       font-size: 14px;
-      opacity: 0.9;
-      margin-bottom: 30px;
+      opacity: 0.85;
     }
 
-    button {
-      width: 100%;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      background: #00c853;
-      color: #fff;
-      cursor: pointer;
-      transition: 0.3s;
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
-    button:hover {
-      background: #00a844;
-    }
-
-    footer {
-      margin-top: 30px;
-      font-size: 12px;
-      opacity: 0.7;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>📷 Scan QR Code</h1>
-    <p>Tekan tombol di bawah untuk membuka scanner QR Code</p>
-
-    <button onclick="openScanner()">
-      MULAI SCAN
-    </button>
-
-    <footer>
-      © LAPAS BAUBAU
-    </footer>
+    <div class="icon">📷</div>
+    <h1>Menyiapkan Scanner QR</h1>
+    <p>Mohon tunggu sebentar...</p>
   </div>
 
   <script>
-    function openScanner() {
-      window.location.href =
-        "https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec";
-    }
+    // Delay kecil agar animasi terlihat (opsional)
+    setTimeout(() => {
+      window.location.replace(
+        "https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec"
+      );
+    }, 800);
   </script>
 
 </body>
