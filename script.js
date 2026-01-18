@@ -1,24 +1,39 @@
-let deferredPrompt;
+    const video = document.getElementById('cameraView');
+    const captureBtn = document.getElementById('captureBtn');
+    const canvas = document.getElementById('photoCanvas');
+    const ctx = canvas.getContext('2d');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-});
+    // Minta akses kamera
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { 
+            facingMode: 'environment' // gunakan kamera belakang
+          },
+          audio: false
+        });
+        video.srcObject = stream;
+      } catch (error) {
+        console.error('Error mengakses kamera:', error);
+        alert('Tidak dapat mengakses kamera. Pastikan Anda memberikan izin.');
+      }
+    }
 
-/**
- * Prompt akan muncul saat user menyentuh layar pertama kali
- * (tap / scroll / klik)
- */
-const triggerInstall = async () => {
-  if (!deferredPrompt) return;
+    // Ambil foto
+    captureBtn.addEventListener('click', () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0);
+      
+      // Konversi ke data URL
+      const photoData = canvas.toDataURL('image/jpeg');
+      
+      // Lakukan sesuatu dengan foto (simpan, kirim ke server, dll)
+      console.log('Foto diambil:', photoData.substring(0, 50) + '...');
+      
+      // Kirim ke Google Apps Script jika diperlukan
+      // sendToGoogleAppsScript(photoData);
+    });
 
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-
-  document.removeEventListener('click', triggerInstall);
-  document.removeEventListener('touchstart', triggerInstall);
-};
-
-document.addEventListener('click', triggerInstall);
-document.addEventListener('touchstart', triggerInstall);
+    // Mulai kamera saat halaman dimuat
+    window.addEventListener('DOMContentLoaded', startCamera);
