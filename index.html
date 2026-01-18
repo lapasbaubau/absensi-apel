@@ -1,364 +1,89 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman QR Code Absensi</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
-        header {
-            background-color: #4285f4;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
-        
-        header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
-        
-        .instructions {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            margin-right: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .instructions h2 {
-            color: #4285f4;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eaeaea;
-        }
-        
-        .instructions ol {
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .instructions li {
-            margin-bottom: 10px;
-            padding-left: 10px;
-        }
-        
-        .warning {
-            background-color: #fff3cd;
-            border: 1px solid #ffecb5;
-            color: #856404;
-            padding: 12px;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-        
-        .qr-display {
-            flex: 2;
-            min-width: 400px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .frame-container {
-            width: 100%;
-            height: 600px;
-            border: 2px solid #eaeaea;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        #qrFrame {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .frame-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            z-index: 10;
-        }
-        
-        .frame-overlay.hidden {
-            display: none;
-        }
-        
-        .loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .spinner {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #4285f4;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .fallback-section {
-            width: 100%;
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eaeaea;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #4285f4;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 10px;
-        }
-        
-        .btn:hover {
-            background-color: #3367d6;
-        }
-        
-        .btn-secondary {
-            background-color: #5a6268;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #4a5258;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 14px;
-            border-top: 1px solid #eaeaea;
-            background-color: #f9f9f9;
-        }
-        
-        @media (max-width: 768px) {
-            .content {
-                flex-direction: column;
-            }
-            
-            .instructions {
-                margin-right: 0;
-            }
-            
-            .qr-display {
-                min-width: 100%;
-            }
-            
-            .frame-container {
-                height: 500px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan QR Code</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: #00c853;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00a844;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Halaman QR Code Absensi</h1>
-            <p>Gunakan halaman ini untuk melakukan absensi dengan memindai QR Code</p>
-        </header>
-        
-        <div class="content">
-            <div class="instructions">
-                <h2>Petunjuk Penggunaan</h2>
-                <ol>
-                    <li>Pastikan Anda terhubung ke jaringan internet</li>
-                    <li>Buka aplikasi pemindai QR Code di perangkat Anda</li>
-                    <li>Arahkan kamera ke QR Code yang ditampilkan di sebelah kanan</li>
-                    <li>Tunggu hingga QR Code terbaca dan mengarahkan ke halaman absensi</li>
-                    <li>Ikuti instruksi yang muncul di halaman absensi</li>
-                </ol>
-                
-                <div class="warning">
-                    <strong>Catatan Penting:</strong> Jika QR Code tidak muncul, klik tombol "Buka Halaman QR Code" di bagian bawah untuk mengakses halaman absensi secara langsung.
-                </div>
-            </div>
-            
-            <div class="qr-display">
-                <div class="frame-container">
-                    <div id="frameOverlay" class="frame-overlay">
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            <p>Memuat halaman QR Code absensi...</p>
-                        </div>
-                        <p>Jika halaman tidak muncul dalam beberapa detik, kemungkinan adanya pembatasan teknis.</p>
-                        <p>Gunakan tombol di bawah untuk alternatif lainnya.</p>
-                    </div>
-                    <iframe 
-                        id="qrFrame"
-                        src="https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec"
-                        title="Halaman QR Code Absensi"
-                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-                
-                <div class="fallback-section">
-                    <h3>Alternatif Akses QR Code</h3>
-                    <p>Jika QR Code di atas tidak muncul, gunakan opsi berikut:</p>
-                    <div>
-                        <a href="https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec" 
-                           target="_blank" 
-                           class="btn">
-                            Buka Halaman QR Code di Tab Baru
-                        </a>
-                        <button id="refreshBtn" class="btn btn-secondary">
-                            Muat Ulang Halaman
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>Halaman ini digunakan untuk menampilkan QR Code absensi. Pastikan Anda menggunakan perangkat yang mendukung pemindaian QR Code.</p>
-            <p>© 2023 Sistem Absensi - Untuk keperluan internal</p>
-        </footer>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const qrFrame = document.getElementById('qrFrame');
-            const frameOverlay = document.getElementById('frameOverlay');
-            const refreshBtn = document.getElementById('refreshBtn');
-            
-            // Sembunyikan overlay setelah iframe dimuat
-            qrFrame.addEventListener('load', function() {
-                frameOverlay.classList.add('hidden');
-            });
-            
-            // Jika iframe gagal dimuat
-            qrFrame.addEventListener('error', function() {
-                frameOverlay.innerHTML = `
-                    <div style="text-align: center;">
-                        <h3 style="color: #dc3545; margin-bottom: 15px;">Gagal Memuat Halaman QR Code</h3>
-                        <p>Halaman QR Code tidak dapat ditampilkan karena pembatasan teknis.</p>
-                        <p>Silakan gunakan tombol di bawah untuk mengakses langsung:</p>
-                        <a href="https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec" 
-                           target="_blank" 
-                           class="btn" style="margin-top: 15px;">
-                            Buka Halaman QR Code
-                        </a>
-                    </div>
-                `;
-            });
-            
-            // Set timeout jika halaman terlalu lama dimuat
-            setTimeout(function() {
-                if (!frameOverlay.classList.contains('hidden')) {
-                    frameOverlay.innerHTML = `
-                        <div style="text-align: center;">
-                            <h3 style="color: #ff9800; margin-bottom: 15px;">Halaman Memuat Terlalu Lama</h3>
-                            <p>Halaman QR Code mungkin memerlukan waktu lebih lama untuk dimuat.</p>
-                            <p>Anda dapat mencoba tombol di bawah ini:</p>
-                            <button id="retryBtn" class="btn" style="margin-top: 15px;">
-                                Coba Lagi
-                            </button>
-                            <a href="https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec" 
-                               target="_blank" 
-                               class="btn btn-secondary" style="margin-top: 15px;">
-                                Buka di Tab Baru
-                            </a>
-                        </div>
-                    `;
-                    
-                    // Tambahkan event listener untuk tombol coba lagi
-                    document.getElementById('retryBtn').addEventListener('click', function() {
-                        location.reload();
-                    });
-                }
-            }, 10000); // 10 detik
-            
-            // Tombol muat ulang
-            refreshBtn.addEventListener('click', function() {
-                frameOverlay.classList.remove('hidden');
-                frameOverlay.innerHTML = `
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Memuat ulang halaman QR Code...</p>
-                    </div>
-                `;
-                
-                // Reload iframe dengan timestamp untuk menghindari cache
-                const originalSrc = qrFrame.src;
-                const separator = originalSrc.includes('?') ? '&' : '?';
-                qrFrame.src = originalSrc + separator + 't=' + new Date().getTime();
-            });
-            
-            // Coba teknik referrer policy yang berbeda
-            setTimeout(function() {
-                // Coba pendekatan lain dengan menambahkan atribut untuk menghindari deteksi frame
-                qrFrame.setAttribute('referrerpolicy', 'no-referrer');
-                qrFrame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-modals');
-            }, 1000);
-        });
-    </script>
+  <div class="container">
+    <h1>📷 Scan QR Code</h1>
+    <p>Tekan tombol di bawah untuk membuka scanner QR Code</p>
+
+    <button onclick="openScanner()">
+      MULAI SCAN
+    </button>
+
+    <footer>
+      © LAPAS BAUBAU
+    </footer>
+  </div>
+
+  <script>
+    function openScanner() {
+      window.location.href =
+        "https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec";
+    }
+  </script>
+
 </body>
 </html>
