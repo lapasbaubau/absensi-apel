@@ -2,75 +2,30 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Absensi Scanner QR...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prespas</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
+    html, body {
       margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      text-align: center;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
     }
-
-    .container {
-      padding: 20px;
-      animation: fadeIn 0.8s ease-in-out;
-    }
-
-    .icon {
-      font-size: 60px;
-      margin-bottom: 20px;
-      animation: pulse 1.5s infinite;
-    }
-
-    h1 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 14px;
-      opacity: 0.85;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="icon">📷</div>
-    <h1>Menyiapkan Scanner QR</h1>
-    <p>Mohon tunggu sebentar...</p>
-  </div>
-
-  <script>
-    // Delay kecil agar animasi terlihat (opsional)
-    setTimeout(() => {
-      window.location.replace(
-        "https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec"
-      );
-    }, 800);
-  </script>
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbxxEBQzccmq0FJ4JFxAh4jEue4cG_puXdzm1sST--FZt2hKZD0ukkVMroOQ_4jRZSmZ/exec"
+    allow="camera; microphone; geolocation"
+    loading="lazy">
+  </iframe>
 
 </body>
 </html>
